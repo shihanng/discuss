@@ -1,0 +1,9 @@
+<h2 class="text-xl font-bold mb-2">Topics</h2>
+
+<ul class="list-disc list-inside">
+  <%= for topic <- @topics do %>
+    <li class="mb-2">
+      <%= topic.title %>
+    </li>
+  <% end %>
+</ul>
