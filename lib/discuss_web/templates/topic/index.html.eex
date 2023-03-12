@@ -2,8 +2,11 @@
 
 <ul class="list-disc list-inside">
   <%= for topic <- @topics do %>
-    <li class="mb-2">
+    <li class="mb-2 flex">
+    <div class="grow">
       <%= topic.title %>
+    </div>
+    <%= link "Edit", to: Routes.topic_path(@conn, :edit, topic) %>
     </li>
   <% end %>
 </ul>
