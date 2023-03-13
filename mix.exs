@@ -49,7 +49,9 @@ defmodule Discuss.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:phoenix_view, "~> 2.0"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+      {:ueberauth, "~> 0.7"},
+      {:ueberauth_github, "~> 0.8"}
     ]
   end
 
