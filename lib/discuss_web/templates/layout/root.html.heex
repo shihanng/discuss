@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="csrf-token" content={csrf_token_value()}>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content={csrf_token_value()} />
     <.live_title suffix=" · Phoenix Framework">
       <%= assigns[:page_title] || "MyApp" %>
     </.live_title>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")} />
+    <script
+      defer
+      phx-track-static
+      type="text/javascript"
+      src={Routes.static_path(@conn, "/assets/app.js")}
+    >
+    </script>
   </head>
   <body class="flex flex-col min-h-screen bg-gray-100">
     <header class="bg-white shadow-md">
       <nav class="container mx-auto px-4 py-2 flex justify-between items-center">
-        <a href="#" class="text-lg font-bold text-gray-800">Discuss</a>
-        <ul class="flex space-x-4">
+        <div class="flex items-center">
+          <a href="#" class="text-lg font-bold text-gray-800">Discuss</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <ul class="flex space-x-4">
             <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+              <li><%= link("LiveDashboard", to: Routes.live_dashboard_path(@conn, :home)) %></li>
             <% end %>
           </ul>
+          <%= if @conn.assigns[:user] do %>
+            <a
+              href="/logout"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block"
+            >
+              Log out
+            </a>
+          <% else %>
+            <%= link("Sign in",
+              to: Routes.auth_path(@conn, :request, "github"),
+              class:
+                "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block"
+            ) %>
+          <% end %>
+        </div>
       </nav>
     </header>
 
