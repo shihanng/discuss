@@ -31,12 +31,11 @@
             <% end %>
           </ul>
           <%= if @conn.assigns[:user] do %>
-            <a
-              href="/logout"
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block"
-            >
-              Log out
-            </a>
+            <%= link("Log out",
+              to: Routes.auth_path(@conn, :signout),
+              class:
+                "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block"
+            ) %>
           <% else %>
             <%= link("Sign in",
               to: Routes.auth_path(@conn, :request, "github"),
