@@ -5,9 +5,11 @@
     <li class="mb-2 flex">
     <div class="grow">
       <%= topic.title %>
+      <%= if @conn.assigns.user != nil && @conn.assigns.user.id == topic.user_id do %>
+        <%= link "Edit", to: Routes.topic_path(@conn, :edit, topic) %>|
+        <%= link "Delete", to: Routes.topic_path(@conn, :delete, topic), method: :delete %>
+      <% end %>
     </div>
-    <%= link "Edit", to: Routes.topic_path(@conn, :edit, topic) %>|
-    <%= link "Delete", to: Routes.topic_path(@conn, :delete, topic), method: :delete %>
     </li>
   <% end %>
 </ul>
